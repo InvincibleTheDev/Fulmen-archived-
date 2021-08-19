@@ -23,7 +23,7 @@ class Logs(commands.Cog):
     log_channel = discord.utils.get (self.bot.get_all_channels(), name="staff-logs")
 
     entry = await channel.guild.audit_logs(action=discord.AuditLogAction.channel_delete, limit=1).get()
-
+    print('hello world')
     embed=discord.Embed(title="!!CHANNEL WAS Created!!", description="Another channel was Created", color=0xff2600)
     embed.add_field(name="Who Created The Channel", value=entry.user.name, inline=False)
     embed.add_field(name="The Channel That Was Created", value=channel.name, inline=False)
