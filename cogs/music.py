@@ -361,6 +361,10 @@ class Music(commands.Cog):
     async def _stop(self, ctx: commands.Context):
         """Stops playing song and clears the queue."""
 
+
+
+
+
         ctx.voice_state.songs.clear()
 
         if ctx.voice_state.is_playing:
