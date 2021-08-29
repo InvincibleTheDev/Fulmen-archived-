@@ -1,3 +1,10 @@
+'''
+Final Update
+
+'''
+
+
+
 import discord
 #python3 -m poetry install
 import os
@@ -26,8 +33,12 @@ bot.warnings = {} # guild_id : {member_id: [count, [(admin_id, reason)]]}
 
 async def initialize():
     await bot.wait_until_ready()
-    bot.db = await aiosqlite.connect("./data/data.db")
+    bot.db = await aiosqlite.connect("./data/database.db")
     await bot.db.execute("CREATE TABLE IF NOT EXISTS guildData (guild_id int, user_id int, exp int, warn_reason TEXT, PRIMARY KEY (guild_id, user_id))")
+    await bot.db.execute("CREATE TABLE IF NOT EXISTS testTable (guild_id int, name text, PRIMARY KEY (guild_id))")
+
+#    await bot.db.execute("CREATE TABLE IF NOT EXISTS Channels (guild_id text, logs_channel text PRIMARY KEY (guild_id) ) ")
+
 
 
 

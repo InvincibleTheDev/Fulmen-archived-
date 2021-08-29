@@ -19,6 +19,8 @@ aiosqlite = "^0.17.0"
 antispam = "^0.0.10"
 Discord-Anti-Spam = "^0.9.0"
 aiofiles = "^0.7.0"
+humanize = "^3.11.0"
+wavelink = "^0.9.10"
 
 [tool.poetry.dev-dependencies]
 
