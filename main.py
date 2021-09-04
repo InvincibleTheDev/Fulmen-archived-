@@ -13,6 +13,9 @@ import aiosqlite
 import asyncio
 
 import math 
+''''
+important upadate found a slash commands framework so mabey continue bot??
+''''
 
 from discord.ext import commands
 
