@@ -42,8 +42,8 @@ def get_prefix(bot, message):
 bot = commands.Bot( command_prefix=get_prefix, intents =intents )
 
 bot.multiplier = 1
-@bot.command()
-async def new(ctx, new_pr):
+@bot.command(aliases = ['new_prefix'])
+async def set_prefix(ctx, new_prefix):
     if ctx.message.author.guild_permissions.manage_messages:
         db = sqlite3.connect('./data/test.db')
         cursor = db.cursor()
@@ -51,13 +51,13 @@ async def new(ctx, new_pr):
         prefix = cursor.fetchone()
         if prefix is None:
             sql = ("INSERT INTO main(guild_id, prefix) VALUES(?,?)")
-            val = (ctx.guild.id, new_pr)
-            prefixsetem = discord.Embed(title=f"<:Success:835190431758549043> **{ctx.guild.name}**'s prefix set to `{new_pr}`", description=f"Set by **{ctx.author}**", color=0x03fc45)
+            val = (ctx.guild.id, new_prefix)
+            prefixsetem = discord.Embed(title=f"<:Success:835190431758549043> **{ctx.guild.name}**'s prefix set to `{new_prefix}`", description=f"Set by **{ctx.author}**", color=0x03fc45)
             await ctx.send(embed=prefixsetem)
         elif prefix is not None:
             sql = ("UPDATE main SET prefix = ? WHERE guild_id = ?")
-            val = (new_pr, ctx.guild.id)
-            prefixsetem = discord.Embed(title=f"<:Success:835190431758549043> **{ctx.guild.name}**'s prefix updated to `{new_pr}`", description=f"Updated by **{ctx.author}**", color=0x03fc45)
+            val = (new_prefix, ctx.guild.id)
+            prefixsetem = discord.Embed(title=f"<:Success:835190431758549043> **{ctx.guild.name}**'s prefix updated to `{new_prefix}`", description=f"Updated by **{ctx.author}**", color=0x03fc45)
             await ctx.send(embed=prefixsetem)
         cursor.execute(sql, val)
         db.commit()
@@ -96,11 +96,7 @@ async def reload(ctx, extension):
   bot.load_extension(f'cogs.{extension}')
   await ctx.channel.send('reloaded')
 
-
-
 keep_alive()
 
 
 bot.run(os.environ('TOKEN'))
-
-
