@@ -67,8 +67,6 @@ async def new(ctx, new_pr):
 bot.warnings = {} # guild_id : {member_id: [count, [(admin_id, reason)]]}
 
 
-
-
     
 
 
